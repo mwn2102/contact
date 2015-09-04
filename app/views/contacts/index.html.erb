@@ -1,0 +1,54 @@
+<h1>Contacts</h1>
+
+<div class="row">
+<%= link_to 'New Contact', new_contact_path, class: 'btn btn-success btn-lg' %>
+
+<table class="table table-bordered">
+<thead></thead>
+<tbody>
+
+  <% @contacts.each do |contact| %>
+    <tr>
+      <td class="col-md-3">
+          <ul >
+              <li>Name: <%= link_to contact.name, contact_path(contact) %></li>
+              <li>Phone Number: <%=contact.phone %> </li>
+              <li>Email: <%=contact.email%></li>
+              <li>Address: <%=contact.address %></li>
+          </ul>
+      </td>
+      <td class="col-md-3">
+          <ul>
+              <li>Time Called:<%=contact.called_at %></li>
+              <li>Talked With:<%=contact.employee %></li>
+              <li>Impression:<%=contact.impression %></li>
+              <li>Referral Source:<%=contact.referral %></li>
+          </ul>
+      </td>
+      <td class="col-md-3">
+          <ul>
+              <li>Practice Area:<%=contact.practice_area %></li>
+              <li>Description:<%=contact.description %></li>    
+          </ul>
+      <td class="col-md-3">
+          <ul>
+              <li>Attorneys: <%contact.attorneys.each do |attorney|%>
+                    <%=attorney.name%><%end%>
+              </li>
+              <li>Called Back: <%=contact.called_back %></li>
+              <%if contact.retained? %>
+                <li>Retained: Yes</li>
+              <%else%>
+                <li>Retained: No</li>
+              <%end%>
+              
+          </ul>
+      </td> 
+    </tr>
+  <%end%>
+</tbody>
+</table>
+
+</div>
+
+

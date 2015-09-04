@@ -1,0 +1,66 @@
+
+<h1>New Contact Form</h1>
+
+<%= form_for(@contact) do |f| %>
+  <ul>
+  <% @contact.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+   <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+   <p>
+    <%= f.label :called_at %><br />
+    <%= f.text_field :called_at, value: Time.zone.now.to_formatted_s(:long)    %>
+  </p>
+   <p>
+    <%= f.label :employee %><br />
+    <%= f.text_field :employee %>
+  </p>
+   <p>
+    <%= f.label :impression %><br />
+    <%= f.text_field :impression %>
+  </p>
+   <p>
+    <%= f.label :referral %><br />
+    <%= f.text_field :referral %>
+  </p>
+   <p>
+    <%= f.label :practice_area %><br />
+    <%= f.text_field :practice_area %>
+  </p>
+   <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+   <%=f.label :attorney_id%>
+   <%=f.collection_check_boxes(:attorney_ids, Attorney.all, :id, :name)%>
+  </p>
+   <p>
+    <%= f.label :called_back %><br />
+    <%= f.text_field :called_back %>
+  </p>
+   <p>
+    <%= f.label :retained %><br />
+    <%= f.text_field :retained %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
