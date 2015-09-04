@@ -1,0 +1,8 @@
+<h2>New Client Inquiry</h2>
+<p>
+  Click on the following link when, and only when, you call the potential client: 
+</p>
+<%= link_to "I Returned Call", edit_call_returned_url(@contact.id)%>
+
+<p><%=@contact.name%></p>
+<p><%=@contact.description%></p>

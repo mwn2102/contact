@@ -19,22 +19,17 @@ class ContactsController < ApplicationController
         #send mail
         #flash
         @contact = Contact.new(contact_params)
-        
-        # @contact.connections.create(attorney_id: contact_id)
+        # This stuff didn't work:
         # @contact.connections.build(params[:attorney_id])
-        
         # @this_contact = Contact.find_by(id: @contact.id)
         # params[:attorney_ids].each do |attorney_id|
         #     @this_contact.connections.create(attorney_id: attorney_id)
         # end
         if @contact.save
-            # @connection = @contact.connections.create(attorney_id: params[:attorney_id], contact_id: @contact.id)
             @contact.connections.create(attorney_id: params[:attorney_id])
-            # connection = @contact.attorneys.new(params[:attorney_id])
-            # Connecton.create(customer_id: @cust.id, house_id: house.id)
             
-        #   @user.send_activation_email
-        #   flash[:info] = "Please check your email to activate your account."
+          ContactMailer.new_contact(@contact).deliver_now
+          flash[:success] = "Contact saved."
           redirect_to contacts_path
         else
           render 'new'

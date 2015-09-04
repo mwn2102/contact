@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     end
 
     def create
-        user = Attorney.find_by(name: "bpmnj")
+        user = Attorney.find_by(name: "Craig")
         if user && user.authenticate(params[:session][:password])
           log_in user
           redirect_to contacts_path 
